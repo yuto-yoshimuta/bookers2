@@ -1,0 +1,12 @@
+<div>
+  <p>title：<%= @book.title %></p>
+  <p>body：<%= @book.body %></p>
+  <p>ユーザーネーム：
+  <%= link_to @book.user.name, "/books" %>
+  </p>
+
+  <% if @book.user == current_user %>
+    <%= link_to "削除", book_path(@book), method: :delete %>
+    <%= link_to '編集', edit_book_path(@book) %>
+  <% end %>
+</div>

@@ -1,0 +1,24 @@
+<h1>Books#index</h1>
+<p>Find me in app/views/books/index.html.erb</p>
+
+<h1>New book</h1>
+<%= form_with model: @book, local: true do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Body</h4>
+  <%= f.text_area :body %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit 'Create Book' %>
+<% end %>
+
+<% @books.each do |book| %>
+  <div>
+    <p>投稿ユーザー画像：</p>
+    <p>タイトル：
+    <%= link_to book_path(book.id) do %>
+    <%= book.title %>
+    <% end %>
+    </p>
+    <p>説明：<%= book.body %></p>
+  </div>
+<% end %>
