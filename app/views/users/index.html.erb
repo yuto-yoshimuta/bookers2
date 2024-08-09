@@ -1,5 +1,13 @@
 <h1>users#index</h1>
 
+<% if flash[:success] %>
+  <div class="alert alert-success">
+    <%= flash[:success] %>
+  </div>
+<% end %>
+
+
+
 <% @users.each do |user| %>
 <div>
   <p>投稿ユーザー画像：<%= image_tag user.get_profile_image(100,100) %></p>
