@@ -1,0 +1,15 @@
+<h1>users#index</h1>
+
+<% @users.each do |user| %>
+<div>
+  <p>投稿ユーザー画像：<%= image_tag user.get_profile_image(100,100) %></p>
+  <p>名前：<%= user.name %></p>
+  <p>
+    <%= link_to user_path(user.id) do %>
+    Show
+    <% end %>
+    </p>
+    <p><%= link_to "プロフィール編集", edit_user_path(user) %></p>
+</div>
+<% end %>
+
