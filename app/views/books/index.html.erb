@@ -1,36 +1,50 @@
-<% if flash[:success] %>
-  <div class="alert alert-success">
-    <%= flash[:success] %>
-  </div>
-<% end %>
+<%= render 'users/flash' %>
 
 <% if @book.errors.any? %>
-  <%= @book.errors.count %> error prohibited this obj from being saved:
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<h1>New book</h1>
-<%= form_with model: @book, local: true do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>Body</h4>
-  <%= f.text_area :body %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit 'Create Book' %>
-<% end %>
-
-<% @books.each do |book| %>
-  <div>
-    <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
-    <p>タイトル：
-    <%= link_to book_path(book.id) do %>
-    <%= book.title %>
-    <% end %>
-    </p>
-    <p>説明：<%= book.body %></p>
+  <div class="alert alert-danger">
+    <%= @book.errors.count %> error(s) prohibited this book from being saved:
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
+
+<div class="container mt-4">
+  <div class="row">
+    <!-- 左側のカラム -->
+    <div class="col-md-3">
+      <%= render 'users/user_info' %>
+      <%= render 'book_form', book: @book %>
+    </div>
+    <!-- 右側のカラム -->
+    <div class="col-md-8 offset-md-1">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Books</h5>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Opinion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @books.each do |book| %>
+              <tr>
+                <td>
+                  <%= link_to book_path(book.id) do %>
+                    <%= book.title %>
+                  <% end %>
+                </td>
+                <td><%= book.body %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

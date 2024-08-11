@@ -1,0 +1,20 @@
+<div class="card-body">
+  <h1 class="card-title">User info</h1>
+  <div class="mb-3">
+    <% user_to_display = @user || current_user %>
+    <%= image_tag user_to_display.get_profile_image(100, 100) %>
+  </div>
+  <p class="card-text">
+    <strong>Name:</strong> <%= user_to_display.name %><br>
+    <strong>Introduction:</strong> <%= user_to_display.introduction || 'No introduction' %>
+  </p>
+  <% if current_user == user_to_display %>
+    <%= link_to edit_user_path(user_to_display), class: "btn btn-outline-secondary w-100" do %>
+      <i class="fa-solid fa-user-gear"></i>
+    <% end %>
+  <% else %>
+    <%= link_to user_path(current_user), class: "btn btn-outline-secondary w-100" do %>
+      <i class="fa-solid fa-user-gear"></i>
+    <% end %>
+  <% end %>
+</div>

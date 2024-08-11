@@ -1,13 +1,33 @@
-<div>
-  <p>投稿ユーザー画像：<%= image_tag @book.user.get_profile_image(100,100) %></p>
-  <p>title：<%= @book.title %></p>
-  <p>body：<%= @book.body %></p>
-  <p>ユーザーネーム：
-  <%= link_to @book.user.name, "/books" %>
-  </p>
+<%= render 'users/flash' %>
 
-  <% if @book.user == current_user %>
-    <%= link_to "削除", book_path(@book), method: :delete, data: { confirm: "本当に消しますか？" } %>
-    <%= link_to '編集', edit_book_path(@book) %>
-  <% end %>
+<div class="container mt-4">
+  <div class="row">
+    <!-- 左側のカラム -->
+    <div class="col-md-3">
+      <%= render 'users/user_info' %>
+      <%= render 'book_form', book: @book %>
+    </div>
+    <!-- 右側のカラム -->
+    <div class="col-md-8 offset-md-1">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Book detail</h5>
+          <div class="d-flex align-items-center mb-3">
+            <%= image_tag @book.user.get_profile_image(100, 100), class: "img-fluid rounded me-3" %>
+            <div>
+              <strong><%= @book.title %></strong>
+              <span class="mx-3"><%= @book.body %></span>
+            <% if @book.user == current_user %>
+              <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-success me-2" %>
+              <%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-danger" %>
+            <% end %>
+            </div>
+          </div>
+          <div>
+            <%= link_to @book.user.name, user_path(@book.user.id) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
