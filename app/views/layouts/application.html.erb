@@ -5,7 +5,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <script src="https://kit.fontawesome.com/337437c9ab.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -26,6 +25,7 @@
                 <li class="nav-item d-flex align-items-center">
                   <i class="fa-solid fa-house mr-2"></i>
                   <%= link_to "Home", user_path(current_user), class: 'nav-link text-dark mb-0' %>
+                </li>
                 <li class="nav-item d-flex align-items-center">
                   <i class="fa-solid fa-users mr-2"></i>
                   <%= link_to "Users", users_path, class: 'nav-link text-dark mb-0' %>
@@ -42,6 +42,7 @@
                 <li class="nav-item d-flex align-items-center">
                   <i class="fa-solid fa-house mr-2"></i>
                   <%= link_to "Home", "/", class: 'nav-link text-dark mb-0' %>
+                </li>
                 <li class="nav-item d-flex align-items-center">
                   <i class="fa-solid fa-link mr-2"></i>
                   <%= link_to "About", about_path, class: 'nav-link text-dark mb-0' %>
@@ -51,7 +52,7 @@
                   <%= link_to "Sign up", new_user_registration_path, class: 'nav-link text-dark mb-0' %>
                 </li>
                 <li class="nav-item d-flex align-items-center">
-                  <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                  <i class="fa-solid fa-right-to-bracket"></i>
                   <%= link_to "Log in", new_user_session_path, class: 'nav-link text-dark mb-0' %>
                 </li>
               <% end %>

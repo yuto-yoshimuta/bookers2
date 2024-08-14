@@ -26,6 +26,7 @@
           <table class="table">
             <thead>
               <tr>
+                <th scope="col"></th>
                 <th scope="col">Title</th>
                 <th scope="col">Opinion</th>
               </tr>
@@ -33,6 +34,9 @@
             <tbody>
               <% @books.each do |book| %>
               <tr>
+                <td>
+                  <%= image_tag book.user.get_profile_image(100, 100), alt: 'User profile image', class: 'img-thumbnail' %>
+                </td>
                 <td>
                   <%= link_to book_path(book.id) do %>
                     <%= book.title %>

@@ -5,7 +5,7 @@
     <!-- 左側のカラム -->
     <div class="col-md-3">
       <%= render 'users/user_info' %>
-      <%= render 'book_form', book: @book %>
+      <%= render 'book_form', book: @new_book %>
     </div>
     <!-- 右側のカラム -->
     <div class="col-md-8 offset-md-1">
@@ -17,10 +17,10 @@
             <div>
               <strong><%= @book.title %></strong>
               <span class="mx-3"><%= @book.body %></span>
-            <% if @book.user == current_user %>
-              <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-success me-2" %>
-              <%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-danger" %>
-            <% end %>
+              <% if @book.user == current_user %>
+                <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-success me-2" %>
+                <%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-danger" %>
+              <% end %>
             </div>
           </div>
           <div>
