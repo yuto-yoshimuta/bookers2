@@ -8,20 +8,25 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 50 }
 
   def self.default_image
-    @default_image ||= ActiveStorage::Blob.create_and_upload!(
-      io: File.open(Rails.root.join('app/assets/images/default-image.jpg')),
-      filename: 'default-image.jpg',
-      content_type: 'image/jpeg'
-    )
+    @default_image ||= begin
+      path = Rails.root.join('app', 'assets', 'images', 'default-image.jpg')
+      unless ActiveStorage::Blob.exists?(filename: 'default-image.jpg')
+        ActiveStorage::Blob.create_and_upload!(
+          io: File.open(path),
+          filename: 'default-image.jpg',
+          content_type: 'image/jpeg'
+        )
+      end
+      ActiveStorage::Blob.find_by(filename: 'default-image.jpg')
+    end
   end
 
   def get_profile_image(width, height)
     if profile_image.attached?
       profile_image.variant(resize_to_limit: [width, height]).processed
     else
-      Rails.cache.fetch("default_image_#{width}_#{height}", expires_in: 1.day) do
-        self.class.default_image.variant(resize_to_limit: [width, height]).processed
-      end
+      # デフォルト画像のパスを直接指定
+      ActionController::Base.helpers.asset_path('default-image.jpg')
     end
   end
 end

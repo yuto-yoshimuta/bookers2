@@ -1,8 +1,5 @@
 <%= render 'users/flash' %>
-
-
 <h1 class="text-center">Editing Book</h1>
-
 <div style="display: flex; justify-content: center;">
   <div style="max-width: 600px; width: 100%;">
     <% if @book.errors.any? %>
@@ -13,25 +10,20 @@
         <% end %>
       </ul>
     <% end %>
-
     <%= form_with model: @book do |f| %>
       <div style="margin-bottom: 1rem;">
         <h4>Title</h4>
         <%= f.text_field :title, style: "width: 100%;" %>
       </div>
-
       <div style="margin-bottom: 1rem;">
         <h4>Opinion</h4>
         <%= f.text_area :body, style: "width: 100%;" %>
       </div>
-
       <br>
       <%= f.submit 'Update Book', class: 'btn btn-success' %>
     <% end %>
-
     <br>
-    <%= link_to 'Show', user_path(@user.id) %>
-    |
+    <%= link_to 'Show', book_path(@book) %> |
     <%= link_to "Back", books_path %>
   </div>
 </div>

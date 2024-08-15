@@ -35,7 +35,9 @@
               <% @books.each do |book| %>
               <tr>
                 <td>
-                  <%= image_tag book.user.get_profile_image(100, 100), alt: 'User profile image', class: 'img-thumbnail' %>
+                  <%= link_to user_path(book.user) do %>
+                    <%= image_tag book.user.get_profile_image(100, 100), alt: 'User profile image', class: 'img-thumbnail' %>
+                  <% end %>
                 </td>
                 <td>
                   <%= link_to book_path(book.id) do %>
