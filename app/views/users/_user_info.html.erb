@@ -1,7 +1,7 @@
+<% user_to_display = user || current_user %>
 <div class="card-body">
   <div class="mb-3">
     <h2 class="card-title">User info</h2>
-    <% user_to_display = @user || current_user %>
     <%= image_tag user_to_display.get_profile_image(100, 100) %>
   </div>
   <table class="table">
@@ -15,8 +15,8 @@
       <th><%= user_to_display.introduction %></th>
     </tr>
   </table>
-  
-      <%= link_to edit_user_path(user_to_display), class: "btn btn-outline-secondary w-100" do %>
-      <i class="fa-solid fa-user-gear"></i>
+
+  <%= link_to edit_user_path(user_to_display), class: "btn btn-outline-secondary w-100" do %>
+    <i class="fa-solid fa-user-gear"></i>
   <% end %>
 </div>

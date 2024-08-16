@@ -15,7 +15,7 @@
   <div class="row">
     <!-- 左側のカラム -->
     <div class="col-md-3">
-      <%= render 'users/user_info' %>
+      <%= render partial: 'users/user_info', locals: { user: nil } %>
       <%= render 'book_form', book: @book %>
     </div>
     <!-- 右側のカラム -->
