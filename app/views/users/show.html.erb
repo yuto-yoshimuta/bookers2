@@ -18,6 +18,8 @@
                 <th scope="col"></th>
                 <th scope="col">Title</th>
                 <th scope="col">Opinion</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -34,6 +36,8 @@
                   <% end %>
                 </td>
                 <td><%= book.body %></td>
+                <td>いいね数</td>
+                <td>コメント数: <%= book.book_comments.count %></td>
               </tr>
             <% end %>
             </tbody>
