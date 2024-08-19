@@ -1,5 +1,4 @@
 <%= render 'flash' %>
-
 <div class="container mt-4">
   <div class="row">
     <!-- 左側のカラム -->
@@ -36,7 +35,17 @@
                   <% end %>
                 </td>
                 <td><%= book.body %></td>
-                <td>いいね数</td>
+                <td>
+                <% if book.favorited_by?(current_user) %>
+                  <%= link_to book_favorite_path(book), method: :delete, class: "text-danger" do %>
+                    <i class="fa-solid fa-heart"></i> <%= book.favorites.count %>
+                  <% end %>
+                <% else %>
+                  <%= link_to book_favorite_path(book), method: :post, class: "text-muted" do %>
+                    <i class="fa-regular fa-heart"></i> <%= book.favorites.count %>
+                  <% end %>
+                <% end %>
+                </td>
                 <td>コメント数: <%= book.book_comments.count %></td>
               </tr>
             <% end %>

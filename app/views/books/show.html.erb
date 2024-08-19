@@ -21,6 +21,15 @@
                 <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-success me-2" %>
                 <%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-danger" %>
               <% end %>
+              <% if @book.favorited_by?(current_user) %>
+                  <%= link_to book_favorite_path(@book), method: :delete, class: "text-danger" do %>
+                    <i class="fa-solid fa-heart"></i> <%= @book.favorites.count %>
+                  <% end %>
+              <% else %>
+                  <%= link_to book_favorite_path(@book), method: :post, class: "text-muted" do %>
+                    <i class="fa-regular fa-heart"></i> <%= @book.favorites.count %>
+                  <% end %>
+              <% end %>
               コメント数: <%= @book.book_comments.count %>
             </div>
           </div>
